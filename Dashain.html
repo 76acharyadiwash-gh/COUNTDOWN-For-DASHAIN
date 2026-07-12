@@ -82,7 +82,94 @@
 🪔 May Goddess Durga bless you and your family with happiness, prosperity and success. Happy Dashain 2083.
 
 </footer>
+<script>
+  const targetDate = new Date("2026-10-21T00:00:00");
 
+function updateCountdown(){
+
+const now = new Date();
+
+let diff = targetDate - now;
+
+if(diff<=0){
+
+document.querySelector(".container").innerHTML="<h2>🎉 Happy Dashain! 🪔</h2>";
+
+clearInterval(timer);
+
+return;
+
+}
+
+let seconds=Math.floor(diff/1000);
+
+let minutes=Math.floor(seconds/60);
+
+let hours=Math.floor(minutes/60);
+
+let days=Math.floor(hours/24);
+
+let years=Math.floor(days/365);
+
+days%=365;
+
+let months=Math.floor(days/30);
+
+days%=30;
+
+hours%=24;
+
+minutes%=60;
+
+seconds%=60;
+
+document.getElementById("years").innerText=years;
+document.getElementById("months").innerText=months;
+document.getElementById("days").innerText=days;
+document.getElementById("hours").innerText=hours;
+document.getElementById("minutes").innerText=minutes;
+document.getElementById("seconds").innerText=seconds;
+
+}
+
+updateCountdown();
+
+const timer=setInterval(updateCountdown,1000);
+
+function showTime(){
+
+document.getElementById("currentTime").innerHTML=
+"Current Time : "+new Date().toLocaleString();
+
+}
+
+showTime();
+
+setInterval(showTime,1000);
+
+const music=document.getElementById("bgMusic");
+
+const btn=document.getElementById("musicBtn");
+
+btn.addEventListener("click",()=>{
+
+music.play();
+
+btn.innerHTML="🎶 Music Playing";
+
+confetti({
+
+particleCount:250,
+
+spread:180,
+
+origin:{y:.6}
+
+});
+
+});
+    
+  </script>>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
 <script src="script.js"></script>
