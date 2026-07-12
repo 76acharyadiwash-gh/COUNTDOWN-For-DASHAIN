@@ -1,107 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashain Countdown</title>
- <link rel="stylesheet" href="dashaincss.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Dashain 2083</title>
+
+<link rel="stylesheet" href="dashaincss.css">
+
 </head>
+
 <body>
-  <!-- 🎉 Welcome Message -->
-  <h1>🎉 Happy Dashain 2083! 🎉</h1>
-  <p class="subtitle">⏳ TIME LEFT TO CELEBRATE</p>
 
-  <!-- Countdown Container -->
-  <div class="container">
-    <div class="countdown" id="countdownDisplay">
-      <div><span id="years">0</span><div class="label">Years</div></div>
-      <div><span id="months">0</span><div class="label">Months</div></div>
-      <div><span id="days">0</span><div class="label">Days</div></div>
-      <div><span id="hours">0</span><div class="label">Hours</div></div>
-      <div><span id="minutes">0</span><div class="label">Minutes</div></div>
-      <div><span id="seconds">0</span><div class="label">Seconds</div></div>
-    </div>
-  </div>
+<h1>🎉 Happy Dashain 2083 🎉</h1>
 
+<h2>
 
-  <footer>
-    🪔 Wishing you happiness, health, and blessings this Dashain!
-  </footer>
+🙏 आयु, धन, समृद्धि, सुख र शान्तिको शुभकामना 🙏
 
-  <script>
-    function startFixedCountdown() {
-      const targetDate = new Date("2026-10-21T00:00:00");
-      
-      setInterval(() => {
-        const now = new Date();
-        let diff = targetDate - now;
+</h2>
 
-        if (diff <= 0) {
-          document.querySelector('.countdown').innerHTML = "<h2>Dashain is Here! 🪔🎉</h2>";
-          return;
-        }
+<p class="subtitle">⏳ TIME LEFT TO CELEBRATE</p>
 
-        const current = {
-          year: now.getFullYear(),
-          month: now.getMonth(),
-          day: now.getDate(),
-          hour: now.getHours(),
-          minute: now.getMinutes(),
-          second: now.getSeconds()
-        };
+<div class="container">
 
-        const target = {
-          year: targetDate.getFullYear(),
-          month: targetDate.getMonth(),
-          day: targetDate.getDate(),
-          hour: targetDate.getHours(),
-          minute: targetDate.getMinutes(),
-          second: targetDate.getSeconds()
-        };
+<div class="countdown">
 
-        let years = target.year - current.year;
-        let months = target.month - current.month;
-        let days = target.day - current.day;
-        let hours = target.hour - current.hour;
-        let minutes = target.minute - current.minute;
-        let seconds = target.second - current.second;
+<div>
+<span id="years">0</span>
+<p>Years</p>
+</div>
 
-        if (seconds < 0) {
-          seconds += 60;
-          minutes--;
-        }
+<div>
+<span id="months">0</span>
+<p>Months</p>
+</div>
 
-        if (minutes < 0) {
-          minutes += 60;
-          hours--;
-        }
+<div>
+<span id="days">0</span>
+<p>Days</p>
+</div>
 
-        if (hours < 0) {
-          hours += 24;
-          days--;
-        }
+<div>
+<span id="hours">0</span>
+<p>Hours</p>
+</div>
 
-        if (days < 0) {
-          const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-          days += previousMonth.getDate();
-          months--;
-        }
+<div>
+<span id="minutes">0</span>
+<p>Minutes</p>
+</div>
 
-        if (months < 0) {
-          months += 12;
-          years--;
-        }
+<div>
+<span id="seconds">0</span>
+<p>Seconds</p>
+</div>
 
-        document.getElementById("years").textContent = years;
-        document.getElementById("months").textContent = months;
-        document.getElementById("days").textContent = days;
-        document.getElementById("hours").textContent = hours;
-        document.getElementById("minutes").textContent = minutes;
-        document.getElementById("seconds").textContent = seconds;
-      }, 1000);
-    }
+</div>
 
-    startFixedCountdown();
-  </script>
+</div>
+
+<div id="currentTime"></div>
+
+<button id="musicBtn">
+🎵 Play Dashain Music
+</button>
+
+<img src="images/ping.png" class="ping">
+
+<div class="kite"></div>
+
+<div class="kite kite2"></div>
+
+<audio id="bgMusic" loop>
+<source src="audio/dashain-song.mp3" type="audio/mpeg">
+</audio>
+
+<footer>
+
+🪔 May Goddess Durga bless you and your family with happiness, prosperity and success. Happy Dashain 2083.
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<script src="script.js"></script>
+
 </body>
 </html>
