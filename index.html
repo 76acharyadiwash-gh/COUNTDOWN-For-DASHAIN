@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+<div id="petals"></div>
 <h1>🎉 Happy Dashain 2083 🎉</h1>
 
 <h2>
@@ -72,6 +72,8 @@
 <div class="kite"></div>
 
 <div class="kite kite2"></div>
+
+<div class="kite kite3"></div>
 
 <audio id="bgMusic" loop>
 <source src="audio/dashain-song.mp3" type="audio/mpeg">
@@ -165,11 +167,44 @@ spread:180,
 
 origin:{y:.6}
 
+
+
 });
 
 });
-    
-  </script>>
+    const petals = document.getElementById("petals");
+
+const flowers = ["🌸","🌺","🌼","💮"];
+
+for(let i = 0; i < 40; i++){
+
+    const petal = document.createElement("span");
+
+    petal.className = "petal";
+
+    petal.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
+
+    // Random horizontal position
+    petal.style.left = Math.random()*100 + "vw";
+
+    // Random size
+    petal.style.fontSize = (15 + Math.random()*25) + "px";
+
+    // Random animation duration
+    petal.style.animationDuration = (6 + Math.random()*8) + "s";
+
+    // Random delay
+    petal.style.animationDelay = (-Math.random()*15) + "s";
+
+    // Random opacity
+    petal.style.opacity = 0.5 + Math.random()*0.5;
+
+    // Random wind drift
+    petal.style.setProperty("--drift",(Math.random()*200-100)+"px");
+
+    petals.appendChild(petal);
+}
+  </script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
 <script src="script.js"></script>

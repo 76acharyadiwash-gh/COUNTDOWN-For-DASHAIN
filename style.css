@@ -240,48 +240,110 @@ animation:swing 3s infinite;
 
 }
 
+
+
+#petals{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:999;
+}
+
+.petal{
+    position:absolute;
+    top:-50px;
+    font-size:20px;
+    user-select:none;
+    animation-name:fall;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+}
+
+@keyframes fall{
+    0%{
+        transform:
+            translate(0,-60px)
+            rotate(0deg);
+    }
+
+    25%{
+        transform:
+            translate(calc(var(--drift)*0.3),25vh)
+            rotate(180deg);
+    }
+
+    50%{
+        transform:
+            translate(calc(var(--drift)*0.6),55vh)
+            rotate(360deg);
+    }
+
+    75%{
+        transform:
+            translate(calc(var(--drift)*0.9),80vh)
+            rotate(540deg);
+    }
+
+    100%{
+        transform:
+            translate(var(--drift),110vh)
+            rotate(720deg);
+    }
+}
+}
 .kite{
-
-position:absolute;
-
-width:120px;
-
-height:120px;
-
-background:url(images/kite.png);
-
-background-size:contain;
-
-background-repeat:no-repeat;
-
-animation:fly 18s linear infinite;
-
+    position:absolute;
+    width:120px;
+    height:120px;
+    background:url("images/kite.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    animation:fly1 18s linear infinite;
 }
 
 .kite2{
-
-animation-delay:9s;
-
+    animation:fly2 20s linear infinite;
+    animation-delay:8s;
 }
 
-@keyframes fly{
-
-0%{
-
-left:-150px;
-
-top:120px;
-
+.kite3{
+    top:20px;
+    left:20px;
+    animation:floatKite 4s ease-in-out infinite;
 }
 
-100%{
-
-left:110%;
-
-top:250px;
-
+@keyframes fly1{
+    0%{
+        left:-150px;
+        top:120px;
+    }
+    100%{
+        left:110%;
+        top:250px;
+    }
 }
 
+@keyframes fly2{
+    0%{
+        right:-150px;
+        top:50px;
+        transform:scale(.9);
+    }
+    100%{
+        right:110%;
+        top:300px;
+        transform:scale(1.1);
+    }
+}
+
+@keyframes floatKite{
+    0%,100%{
+        transform:translateY(0) rotate(-8deg);
+    }
+    50%{
+        transform:translateY(20px) rotate(8deg);
+    }
 }
 
 @media(max-width:768px){
