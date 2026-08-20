@@ -1,213 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Dashain 2083 | Dashain Countdown</title>
 
-<title>Happy Dashain 2083</title>
+    <meta
+        name="description"
+        content="Countdown to Vijaya Dashami 2083 — Happy Dashain!"
+    >
 
-<link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<div id="petals"></div>
-<h1>🎉 Happy Dashain 2083 🎉</h1>
 
-<h2>
+    <!-- Ambient background -->
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-🙏 आयु, धन, समृद्धि, सुख र शान्तिको शुभकामना 🙏
+    <!-- Minimal golden sparks -->
+    <div id="sparks"></div>
 
-</h2>
+    <!-- Main content -->
+    <main class="hero">
 
-<p class="subtitle">⏳ TIME LEFT TO CELEBRATE</p>
+        <div class="eyebrow">
+            ✦ NEPALI FESTIVAL • २०८३ ✦
+        </div>
 
-<div class="container">
+        <h1>
+            Happy Dashain
+            <span>२०८३</span>
+        </h1>
 
-<div class="countdown">
+        <h2>
+            🙏 आयु, धन, समृद्धि, सुख र शान्तिको शुभकामना 🙏
+        </h2>
 
-<div>
-<span id="years">0</span>
-<p>Years</p>
-</div>
+        <p class="subtitle">
+            Counting down to <strong>Vijaya Dashami</strong>
+        </p>
 
-<div>
-<span id="months">0</span>
-<p>Months</p>
-</div>
+        <div class="date-badge">
+            <span>🪔</span>
+            October 21, 2026
+            <span>•</span>
+            Kartik 04, 2083
+        </div>
 
-<div>
-<span id="days">0</span>
-<p>Days</p>
-</div>
+        <!-- Countdown -->
+        <section class="countdown-card">
 
-<div>
-<span id="hours">0</span>
-<p>Hours</p>
-</div>
+            <div class="countdown">
 
-<div>
-<span id="minutes">0</span>
-<p>Minutes</p>
-</div>
+                <div class="time-box">
+                    <span id="months">0</span>
+                    <small>Months</small>
+                </div>
 
-<div>
-<span id="seconds">0</span>
-<p>Seconds</p>
-</div>
+                <div class="separator">:</div>
 
-</div>
+                <div class="time-box">
+                    <span id="days">0</span>
+                    <small>Days</small>
+                </div>
 
-</div>
+                <div class="separator">:</div>
 
-<div id="currentTime"></div>
+                <div class="time-box">
+                    <span id="hours">0</span>
+                    <small>Hours</small>
+                </div>
 
-<button id="musicBtn">
-🎵 Play Dashain Music
-</button>
+                <div class="separator">:</div>
 
-<img src="https://cdn.pixabay.com/photo/2022/08/25/11/05/kite-7409966_1280.png" class="ping">
+                <div class="time-box">
+                    <span id="minutes">0</span>
+                    <small>Minutes</small>
+                </div>
 
-<div class="kite"></div>
+                <div class="separator">:</div>
 
-<div class="kite kite2"></div>
+                <div class="time-box seconds-box">
+                    <span id="seconds">0</span>
+                    <small>Seconds</small>
+                </div>
 
-<div class="kite kite3"></div>
+            </div>
 
-<audio id="bgMusic" loop>
-<source src="audio/dashain-song.mp3" type="audio/mpeg">
-</audio>
+        </section>
 
-<footer>
+        <div id="currentTime"></div>
 
-🪔 May Goddess Durga bless you and your family with happiness, prosperity and success. Happy Dashain 2083.
+        <!-- Music -->
+        <button id="musicBtn" class="music-btn">
+            <span class="music-icon">♫</span>
+            <span id="musicText">Play Dashain Music</span>
+        </button>
 
-</footer>
-<script>
-  const targetDate = new Date("2026-10-21T00:00:00");
+    </main>
 
-function updateCountdown(){
+    <!-- Swing illustration -->
+    <img
+        src="images/dashain-swing.png"
+        class="swing-art"
+        alt="Traditional Dashain swing illustration"
+    >
 
-const now = new Date();
+    <!-- YouTube player -->
+    <div id="youtubePlayer"></div>
 
-let diff = targetDate - now;
+    <footer>
+        🪔 May Goddess Durga bless you and your family with happiness,
+        prosperity and success.
+        <strong>Happy Dashain 2083.</strong>
+    </footer>
 
-if(diff<=0){
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
-document.querySelector(".container").innerHTML="<h2>🎉 Happy Dashain! 🪔</h2>";
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 
-clearInterval(timer);
-
-return;
-
-}
-
-let seconds=Math.floor(diff/1000);
-
-let minutes=Math.floor(seconds/60);
-
-let hours=Math.floor(minutes/60);
-
-let days=Math.floor(hours/24);
-
-let years=Math.floor(days/365);
-
-days%=365;
-
-let months=Math.floor(days/30);
-
-days%=30;
-
-hours%=24;
-
-minutes%=60;
-
-seconds%=60;
-
-document.getElementById("years").innerText=years;
-document.getElementById("months").innerText=months;
-document.getElementById("days").innerText=days;
-document.getElementById("hours").innerText=hours;
-document.getElementById("minutes").innerText=minutes;
-document.getElementById("seconds").innerText=seconds;
-
-}
-
-updateCountdown();
-
-const timer=setInterval(updateCountdown,1000);
-
-function showTime(){
-
-document.getElementById("currentTime").innerHTML=
-"Current Time : "+new Date().toLocaleString();
-
-}
-
-showTime();
-
-setInterval(showTime,1000);
-
-const music=document.getElementById("bgMusic");
-
-const btn=document.getElementById("musicBtn");
-
-btn.addEventListener("click",()=>{
-
-music.play();
-
-btn.innerHTML="🎶 Music Playing";
-
-confetti({
-
-particleCount:250,
-
-spread:180,
-
-origin:{y:.6}
-
-
-
-});
-
-});
-    const petals = document.getElementById("petals");
-
-const flowers = ["🌸","🌺","🌼","💮"];
-
-for(let i = 0; i < 40; i++){
-
-    const petal = document.createElement("span");
-
-    petal.className = "petal";
-
-    petal.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
-
-    // Random horizontal position
-    petal.style.left = Math.random()*100 + "vw";
-
-    // Random size
-    petal.style.fontSize = (15 + Math.random()*25) + "px";
-
-    // Random animation duration
-    petal.style.animationDuration = (6 + Math.random()*8) + "s";
-
-    // Random delay
-    petal.style.animationDelay = (-Math.random()*15) + "s";
-
-    // Random opacity
-    petal.style.opacity = 0.5 + Math.random()*0.5;
-
-    // Random wind drift
-    petal.style.setProperty("--drift",(Math.random()*200-100)+"px");
-
-    petals.appendChild(petal);
-}
-  </script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

@@ -1,382 +1,659 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+:root {
+    --gold: #ffd166;
+    --gold-light: #ffe7a3;
+    --gold-dark: #c89528;
+    --cream: #fff8e7;
+    --glass: rgba(255, 255, 255, 0.09);
+    --glass-border: rgba(255, 209, 102, 0.25);
+    --text-muted: rgba(255, 248, 231, 0.68);
 }
 
-body{
-
-background:url(https://cdn.dribbble.com/userupload/21331406/file/original-ae0fc20196e976de5ac7d4a27a7d6fe8.png?resize=752x&vertical=center);
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-
-text-align:center;
-
-min-height:100vh;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-color:white;
-
-overflow-x:hidden;
-
-position:relative;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:rgba(0,0,0,.45);
-
-z-index:-1;
-
+html {
+    scroll-behavior: smooth;
 }
 
-h1{
+body {
+    min-height: 100vh;
 
-font-size:4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-color:#FFD700;
+    position: relative;
+    overflow: hidden;
 
-text-shadow:0 0 20px gold;
+    color: white;
 
-animation:glow 2s infinite alternate;
+    font-family: "DM Sans", sans-serif;
 
-margin-bottom:15px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25, 10, 4, 0.95),
+            rgba(65, 22, 5, 0.82),
+            rgba(18, 8, 4, 0.96)
+        ),
+        url("https://cdn.dribbble.com/userupload/21331406/file/original-ae0fc20196e976de5ac7d4a27a7d6fe8.png?resize=752x&vertical=center");
 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-@keyframes glow{
+/* Dark overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
 
-from{
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255, 193, 7, 0.12),
+            transparent 38%
+        ),
+        rgba(0, 0, 0, 0.22);
 
-text-shadow:0 0 10px gold;
-
+    pointer-events: none;
 }
 
-to{
+/* Ambient glowing circles */
 
-text-shadow:0 0 40px gold;
-
+.ambient {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    opacity: 0.16;
 }
 
+.ambient-one {
+    width: 350px;
+    height: 350px;
+    background: #ffb300;
+    top: -150px;
+    right: -100px;
 }
 
-h2{
-
-font-size:1.5rem;
-
-margin-bottom:20px;
-
+.ambient-two {
+    width: 300px;
+    height: 300px;
+    background: #e65100;
+    bottom: -150px;
+    left: -100px;
 }
 
-.subtitle{
+/* =========================
+   HERO
+========================= */
 
-font-size:1.2rem;
+.hero {
+    width: min(1100px, 92%);
+    text-align: center;
+    position: relative;
+    z-index: 5;
 
-margin-bottom:25px;
-
+    padding: 35px 20px 100px;
 }
 
-.container{
+.eyebrow {
+    display: inline-block;
 
-padding:20px;
+    padding: 8px 16px;
+    margin-bottom: 20px;
 
-border:4px solid gold;
+    border: 1px solid rgba(255, 209, 102, 0.3);
+    border-radius: 999px;
 
-border-radius:20px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
 
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(15px);
-
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
-.countdown{
+h1 {
+    font-family: "Playfair Display", serif;
 
-display:flex;
+    font-size: clamp(3.4rem, 8vw, 7rem);
+    line-height: 0.95;
 
-gap:20px;
+    color: var(--cream);
 
-flex-wrap:wrap;
+    text-shadow:
+        0 3px 30px rgba(255, 193, 7, 0.22);
 
-justify-content:center;
-
+    letter-spacing: -2px;
 }
 
-.countdown div{
+h1 span {
+    display: block;
 
-width:120px;
+    margin-top: 10px;
 
-padding:20px;
+    font-family: "DM Sans", sans-serif;
 
-background:rgba(255,255,255,.15);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 600;
 
-border:2px solid gold;
+    color: var(--gold);
 
-border-radius:15px;
-
-transition:.4s;
-
-box-shadow:0 0 20px rgba(255,215,0,.4);
-
+    letter-spacing: 8px;
 }
 
-.countdown div:hover{
+h2 {
+    margin-top: 25px;
 
-transform:translateY(-8px);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 500;
 
-box-shadow:0 0 40px gold;
-
+    color: rgba(255, 248, 231, 0.88);
 }
 
-.countdown span{
+.subtitle {
+    margin-top: 12px;
 
-font-size:2.5rem;
+    color: var(--text-muted);
 
-font-weight:bold;
-
-display:block;
-
-color:#FFD700;
-
+    font-size: 0.95rem;
 }
 
-.countdown p{
-
-margin-top:10px;
-
-font-size:1rem;
-
+.subtitle strong {
+    color: var(--gold-light);
 }
 
-#currentTime{
+/* Date */
 
-margin:20px;
+.date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 
-font-size:18px;
+    margin-top: 20px;
+    padding: 9px 16px;
 
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.055);
+    backdrop-filter: blur(15px);
+
+    color: var(--gold-light);
+
+    font-size: 0.82rem;
+    font-weight: 600;
 }
 
-button{
+/* =========================
+   COUNTDOWN
+========================= */
 
-margin-top:20px;
+.countdown-card {
+    width: fit-content;
+    max-width: 100%;
 
-padding:15px 30px;
+    margin: 35px auto 0;
+    padding: 18px;
 
-border:none;
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
 
-border-radius:40px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.10),
+            rgba(255, 255, 255, 0.035)
+        );
 
-font-size:18px;
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-cursor:pointer;
-
-background:gold;
-
-font-weight:bold;
-
-transition:.3s;
-
+    backdrop-filter: blur(22px);
 }
 
-button:hover{
-
-transform:scale(1.05);
-
+.countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-footer{
+.time-box {
+    min-width: 125px;
 
-position:absolute;
+    padding: 18px 20px;
 
-bottom:15px;
+    border-radius: 20px;
 
-font-size:15px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 209, 102, 0.12),
+            rgba(255, 255, 255, 0.045)
+        );
 
-width:100%;
+    border: 1px solid rgba(255, 209, 102, 0.18);
 
-text-align:center;
-
-padding:10px;
-
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.ping{
+.time-box:hover {
+    transform: translateY(-5px);
 
-position:fixed;
+    border-color: rgba(255, 209, 102, 0.5);
 
-right:20px;
-
-bottom:0;
-
-width:200px;
-
-animation:swing 3s infinite;
-
+    box-shadow:
+        0 12px 30px rgba(255, 193, 7, 0.12);
 }
 
-@keyframes swing{
+.time-box span {
+    display: block;
 
-0%{transform:rotate(7deg);}
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
 
-50%{transform:rotate(-7deg);}
+    font-weight: 700;
 
-100%{transform:rotate(7deg);}
+    color: var(--gold);
 
+    font-variant-numeric: tabular-nums;
 }
 
+.time-box small {
+    display: block;
 
+    margin-top: 9px;
 
-#petals{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:999;
+    color: var(--text-muted);
+
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
-.petal{
-    position:absolute;
-    top:-50px;
-    font-size:20px;
-    user-select:none;
-    animation-name:fall;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
+.separator {
+    color: rgba(255, 209, 102, 0.45);
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    transform: translateY(-7px);
 }
 
-@keyframes fall{
-    0%{
-        transform:
-            translate(0,-60px)
-            rotate(0deg);
+/* =========================
+   CURRENT TIME
+========================= */
+
+#currentTime {
+    margin-top: 18px;
+
+    color: rgba(255, 248, 231, 0.55);
+
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+}
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.music-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 25px;
+    padding: 13px 22px;
+
+    border: 1px solid rgba(255, 209, 102, 0.5);
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 209, 102, 0.95),
+            rgba(220, 157, 25, 0.95)
+        );
+
+    color: #2a1604;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(255, 193, 7, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.music-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(255, 193, 7, 0.3);
+}
+
+.music-btn:active {
+    transform: scale(0.97);
+}
+
+.music-icon {
+    font-size: 1.25rem;
+}
+
+/* =========================
+   SWING
+========================= */
+
+.swing-art {
+    position: fixed;
+
+    left: -10px;
+    bottom: -5px;
+
+    width: min(430px, 35vw);
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
+
+    transform-origin: 52% 30%;
+
+    animation: swingMotion 5s ease-in-out infinite;
+}
+
+@keyframes swingMotion {
+
+    0%,
+    100% {
+        transform: rotate(-1.5deg);
     }
 
-    25%{
-        transform:
-            translate(calc(var(--drift)*0.3),25vh)
-            rotate(180deg);
-    }
-
-    50%{
-        transform:
-            translate(calc(var(--drift)*0.6),55vh)
-            rotate(360deg);
-    }
-
-    75%{
-        transform:
-            translate(calc(var(--drift)*0.9),80vh)
-            rotate(540deg);
-    }
-
-    100%{
-        transform:
-            translate(var(--drift),110vh)
-            rotate(720deg);
-    }
-}
-.kite{
-    position:absolute;
-    width:120px;
-    height:120px;
-    background:url("images/kite.png");
-    background-size:contain;
-    background-repeat:no-repeat;
-    animation:fly1 18s linear infinite;
-}
-
-.kite2{
-    animation:fly2 20s linear infinite;
-    animation-delay:8s;
-}
-
-.kite3{
-    top:20px;
-    left:20px;
-    animation:floatKite 4s ease-in-out infinite;
-}
-
-@keyframes fly1{
-    0%{
-        left:-150px;
-        top:120px;
-    }
-    100%{
-        left:110%;
-        top:250px;
+    50% {
+        transform: rotate(1.5deg);
     }
 }
 
-@keyframes fly2{
-    0%{
-        right:-150px;
-        top:50px;
-        transform:scale(.9);
+/* =========================
+   SPARKS
+========================= */
+
+#sparks {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+.spark {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: #ffd166;
+
+    box-shadow:
+        0 0 8px #ffd166,
+        0 0 16px rgba(255, 209, 102, 0.6);
+
+    opacity: 0;
+
+    animation: sparkle linear infinite;
+}
+
+@keyframes sparkle {
+
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.4);
     }
-    100%{
-        right:110%;
-        top:300px;
-        transform:scale(1.1);
+
+    20% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.35;
+        transform: translateY(-30px) scale(1);
+    }
+
+    80% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-70px) scale(0.3);
     }
 }
 
-@keyframes floatKite{
-    0%,100%{
-        transform:translateY(0) rotate(-8deg);
+/* =========================
+   YOUTUBE
+========================= */
+
+#youtubePlayer {
+    position: fixed;
+
+    width: 1px;
+    height: 1px;
+
+    bottom: 0;
+    right: 0;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    position: fixed;
+
+    bottom: 15px;
+    right: 20px;
+
+    max-width: 500px;
+
+    color: rgba(255, 248, 231, 0.52);
+
+    font-size: 0.72rem;
+    line-height: 1.5;
+
+    text-align: right;
+
+    z-index: 5;
+}
+
+footer strong {
+    color: rgba(255, 209, 102, 0.75);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .hero {
+        padding-bottom: 120px;
     }
-    50%{
-        transform:translateY(20px) rotate(8deg);
+
+    .countdown-card {
+        width: 95%;
+    }
+
+    .time-box {
+        min-width: 105px;
+    }
+
+    .swing-art {
+        width: 300px;
+    }
+
+    footer {
+        max-width: 350px;
     }
 }
 
-@media(max-width:768px){
+@media (max-width: 650px) {
 
-h1{
+    body {
+        align-items: flex-start;
+        overflow-y: auto;
+    }
 
-font-size:2.3rem;
+    .hero {
+        width: 100%;
+        min-height: 100vh;
 
+        padding:
+            55px 15px
+            150px;
+    }
+
+    .eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+    }
+
+    h1 {
+        font-size: clamp(3rem, 15vw, 4.5rem);
+    }
+
+    h1 span {
+        font-size: 1.15rem;
+        letter-spacing: 5px;
+    }
+
+    h2 {
+        line-height: 1.7;
+    }
+
+    .date-badge {
+        font-size: 0.7rem;
+    }
+
+    .countdown-card {
+        padding: 12px;
+
+        border-radius: 22px;
+    }
+
+    .countdown {
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 8px;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .time-box {
+        min-width: 0;
+
+        padding: 16px 8px;
+
+        border-radius: 16px;
+    }
+
+    .time-box span {
+        font-size: 2rem;
+    }
+
+    .time-box small {
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+    }
+
+    .seconds-box {
+        grid-column: span 2;
+    }
+
+    .swing-art {
+        width: 250px;
+
+        left: -35px;
+        bottom: -5px;
+
+        opacity: 0.9;
+    }
+
+    footer {
+        left: 10px;
+        right: 10px;
+        bottom: 8px;
+
+        max-width: none;
+
+        text-align: center;
+
+        font-size: 0.6rem;
+    }
 }
 
-.countdown{
+@media (max-width: 380px) {
 
-gap:10px;
+    .hero {
+        padding-top: 35px;
+    }
 
+    .time-box span {
+        font-size: 1.7rem;
+    }
+
+    .music-btn {
+        padding: 11px 18px;
+    }
+
+    .swing-art {
+        width: 210px;
+    }
 }
 
-.countdown div{
+/* Accessibility */
 
-width:95px;
+@media (prefers-reduced-motion: reduce) {
 
-padding:15px;
-
-}
-
-.countdown span{
-
-font-size:2rem;
-
-}
-
-.ping{
-
-width:130px;
-
-}
-
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
