@@ -177,7 +177,7 @@ setInterval(
     ABC123xyz
 */
 
-const YOUTUBE_VIDEO_ID = "YOUR_VIDEO_ID";
+const YOUTUBE_VIDEO_ID = "itpT6R3dGX4";
 
 let youtubePlayer;
 
